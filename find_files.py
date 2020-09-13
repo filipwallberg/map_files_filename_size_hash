@@ -5,10 +5,10 @@ import hashlib
 # License: Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)
 # https://creativecommons.org/licenses/by-nc-sa/4.0/
 
-# Remember to set path @ line 7.
+# Remember to set path @ line 11.
 # The .csv file will be placed next to this file.
 
-path = "/Users/filip/Desktop/logoer"
+path = ""
 files_list_save = []
 
 for root, dirs, files in os.walk(path):
