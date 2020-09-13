@@ -1,9 +1,11 @@
 import os
 import hashlib
 
+# Remember to set path.
+# The .csv file will be placed next to this file.
+
 path = "/Users/filip/Desktop"
 files_list_save = []
-
 
 for root, dirs, files in os.walk(path):
 	for name in files:
@@ -21,12 +23,12 @@ for root, dirs, files in os.walk(path):
 
 			file_save_to_list = [file_to_list_name, file_to_list_size, file_to_list_hash]
 			files_list_save.append(file_save_to_list)
-		
+
 		file_to_list_hash = ""
 		file_to_list_size = ""
 		file_to_list_name = ""
 
-csv_file = open("files_with_hash.csv","w") 
+csv_file = open("files_with_hash.csv","w")
 csv_file.write("file;size;hash\n")
 
 for file in files_list_save:
