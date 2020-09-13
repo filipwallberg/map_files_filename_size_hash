@@ -1,7 +1,11 @@
 import os
 import hashlib
 
-# Remember to set path.
+# Script by Filip Wallberg, wallberg@gmail.com, twitter.com/fiwa
+# License: Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)
+# https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+# Remember to set path @ line 7.
 # The .csv file will be placed next to this file.
 
 path = "/Users/filip/Desktop/logoer"
