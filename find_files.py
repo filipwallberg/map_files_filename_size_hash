@@ -10,28 +10,37 @@ files_list_save = []
 for root, dirs, files in os.walk(path):
 	for name in files:
 
+		attempts_to_check_file = 1
+		file_to_list_hash = "-"
+		file_to_list_size = 0
+		file_to_list_name = "-"
+		file_to_list_status = "-"
+
 		file_to_list_name = root + os.sep + name
-		file_to_list_hash = hashlib.md5(open(file_to_list_name,'rb').read()).hexdigest()
-		file_to_list_size = os.stat(file_to_list_name).st_size / 1000000
 
-		if(os.stat(file_to_list_name).st_size > 0.01):
+		while attempts_to_check_file < 4:
 
-			print("File name with path:\n" + file_to_list_name)
-			print("File size:\n" + str(file_to_list_size) + " mb")
-			print("File hash:\n" + file_to_list_hash)
-			print("---***---***---***---***---***---***")
+			try:
+				file_to_list_hash = hashlib.md5(open(file_to_list_name,'rb').read()).hexdigest()
+				file_to_list_size = os.stat(file_to_list_name).st_size / 1000000
+				file_to_list_status = "checked"
+				break
+			except:
+				attempts_to_check_file += 1
+				file_to_list_status = "error"
+				pass
 
-			file_save_to_list = [name, file_to_list_name, file_to_list_size, file_to_list_hash]
-			files_list_save.append(file_save_to_list)
+		print("File: " + file_to_list_name)
+		print("Status: " + file_to_list_status)
+		print("---***---***---***---***---***---***")
 
-		file_to_list_hash = ""
-		file_to_list_size = ""
-		file_to_list_name = ""
+		file_save_to_list = [name, file_to_list_name, file_to_list_size, file_to_list_hash, file_to_list_status]
+		files_list_save.append(file_save_to_list)
 
 csv_file = open("files_with_hash.csv","w")
-csv_file.write("file;file with path;size;hash\n")
+csv_file.write("file;file with path;size;hash;status\n")
 
 for file in files_list_save:
-	csv_file.write(file[0] + ";" + file[1] + ";" + str(file[2]) + ";" + file[3] + "\n")
+	csv_file.write(file[0] + ";" + file[1] + ";" + str(file[2]) + ";" + file[3] + ";" + file[4] + "\n")
 
 csv_file.close()
