@@ -1,6 +1,8 @@
 import os
 import hashlib
 
+# By Filip Wallberg, wallberg@gmail.com, twitter.com/fiwa
+
 # Remember to set path.
 # The .csv file will be placed next to this file.
 
