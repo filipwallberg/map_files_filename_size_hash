@@ -6,10 +6,10 @@ import hashlib
 # License: Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)
 # https://creativecommons.org/licenses/by-nc-sa/4.0/
 
-# Remember to set path @ line 11.
-# The .csv file will be placed next to this file.
+# Remember to set path @ line 12.
+# The .csv file ('files_with_hash.csv') will be placed next to this file.
 
-path = ""
+path = "../logoer"
 files_list_save = []
 
 for root, dirs, files in os.walk(path):
