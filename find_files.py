@@ -1,4 +1,5 @@
 import os
+import time
 import hashlib
 
 # Script by Filip Wallberg, wallberg@gmail.com, twitter.com/fiwa
@@ -15,9 +16,10 @@ for root, dirs, files in os.walk(path):
 	for name in files:
 
 		attempts_to_check_file = 1
+		file_to_list_name = "-"
 		file_to_list_hash = "-"
 		file_to_list_size = 0
-		file_to_list_name = "-"
+		file_to_list_date = "-"
 		file_to_list_status = "-"
 
 		file_to_list_name = root + os.sep + name
@@ -27,6 +29,7 @@ for root, dirs, files in os.walk(path):
 			try:
 				file_to_list_hash = hashlib.md5(open(file_to_list_name,'rb').read()).hexdigest()
 				file_to_list_size = os.stat(file_to_list_name).st_size / 1000000
+				file_to_list_date = time.ctime(os.path.getmtime(file_to_list_name))
 				file_to_list_status = "checked"
 				break
 			except:
@@ -38,13 +41,13 @@ for root, dirs, files in os.walk(path):
 		print("Status: " + file_to_list_status)
 		print("---***---***---***---***---***---***")
 
-		file_save_to_list = [name, file_to_list_name, file_to_list_size, file_to_list_hash, file_to_list_status]
+		file_save_to_list = [name, file_to_list_name, file_to_list_size, file_to_list_hash, file_to_list_date, file_to_list_status]
 		files_list_save.append(file_save_to_list)
 
 csv_file = open("files_with_hash.csv","w")
-csv_file.write("file;file with path;size;hash;status\n")
+csv_file.write("file;file with path;size;hash;date;status\n")
 
 for file in files_list_save:
-	csv_file.write(file[0] + ";" + file[1] + ";" + str(file[2]) + ";" + file[3] + ";" + file[4] + "\n")
+	csv_file.write(file[0] + ";" + file[1] + ";" + str(file[2]) + ";" + file[3] + ";" + file[4] + ";" + file[5] + "\n")
 
 csv_file.close()
