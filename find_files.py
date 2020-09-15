@@ -48,6 +48,6 @@ csv_file = open("files_with_hash.csv","w")
 csv_file.write("file;file with path;size;hash;date;status\n")
 
 for file in files_list_save:
-	csv_file.write(file[0] + ";" + file[1] + ";" + str(file[2]) + ";" + file[3] + ";" + file[4] + ";" + file[5] + "\n")
+	csv_file.write(file[0] + ";;;" + file[1] + ";;;" + str(file[2]) + ";;;" + file[3] + ";;;" + file[4] + ";;;" + file[5] + "\n")
 
 csv_file.close()
